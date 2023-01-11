@@ -1,6 +1,9 @@
-import { useQuery, gql } from '@apollo/client';
+import { useEffect } from 'react';
+import { useLazyQuery, gql } from '@apollo/client';
 
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
+
+import { AdvertisementTableCustomGridToolbar } from '../AdvertisementTableCustomGridToolbar/AdvertisementTableCustomGridToolbar';
 
 interface AdvertisementsData {
     _id: string;
@@ -23,10 +26,16 @@ const GET_ALL_ADVERTISEMENTS = gql`
 `;
 
 function AdvertisementsTable() {
-    const { loading, error, data } = useQuery(GET_ALL_ADVERTISEMENTS);
+    const [getAdvertisements, { loading, error, data }] = useLazyQuery(GET_ALL_ADVERTISEMENTS);
+    
+    useEffect(() => {
+        getAdvertisements({ variables: {} });
+    }, [])
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.message}</p>;
+
+    if (!data) return <></>;
 
     const columns = [
         { field: '_id', headerName: 'Advertisement id', width: 250 },
@@ -41,7 +50,7 @@ function AdvertisementsTable() {
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
                 columns={columns}
-                rows={data.advertisements.map(({ _id, product_id, title, valid_until, discount_percentage }: AdvertisementsData, index: number) => {
+                rows={data?.advertisements.map(({ _id, product_id, title, valid_until, discount_percentage }: AdvertisementsData, index: number) => {
                     return {
                         id: index,
                         _id: _id,
@@ -52,7 +61,7 @@ function AdvertisementsTable() {
                     }
                 })}
                 components={{
-                    Toolbar: GridToolbar,
+                    Toolbar: AdvertisementTableCustomGridToolbar,
                 }}
             />
         </div>

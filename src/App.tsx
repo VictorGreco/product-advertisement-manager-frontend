@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+
 import AdvertisementsTable from './components/AdvertisementsTable/AdvertisementsTable';
 
 function App() {
@@ -11,4 +13,10 @@ function App() {
   );
 }
 
-export default App;
+export default function IntegrationNotistack() {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <App />
+    </SnackbarProvider>
+  );
+}
