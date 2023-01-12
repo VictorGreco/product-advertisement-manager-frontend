@@ -21,6 +21,8 @@ import { useSnackbar } from 'notistack';
 import { NEW_ADVERTISEMENT } from '../../commons/common.gql';
 import { style } from '../../commons/common.styles';
 
+import { ProductIdInput } from '../ProductIdInput/ProductIdInput';
+
 export function NewAdvertisementModal(): JSX.Element {
   const [newAdvertisement, {
     data, loading, error
@@ -114,13 +116,7 @@ export function NewAdvertisementModal(): JSX.Element {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                required
-                id="outlined-required"
-                label="Product id"
-                onChange={handleProductIdChange}
-              />
+              <ProductIdInput onChange={handleProductIdChange}/>
             </Grid>
 
             <Grid item xs={12}>

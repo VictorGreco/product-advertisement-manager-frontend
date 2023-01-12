@@ -20,6 +20,8 @@ import {
 } from '../../commons/common.gql';
 import { style } from '../../commons/common.styles';
 
+import { ProductIdInput } from '../ProductIdInput/ProductIdInput';
+
 export function UpdateAdvertisementModal(): JSX.Element {
     const [updateAdvertisement, {
         loading,
@@ -118,14 +120,7 @@ export function UpdateAdvertisementModal(): JSX.Element {
         return (
             <>
                 <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        required
-                        id="outlined-required"
-                        label="Product id"
-                        value={productId}
-                        onChange={handleProductIdChange}
-                    />
+                    <ProductIdInput onChange={handleProductIdChange} />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -188,9 +183,9 @@ export function UpdateAdvertisementModal(): JSX.Element {
                 <Box sx={style}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Typography 
-                                id="modal-modal-title" 
-                                variant="h6" 
+                            <Typography
+                                id="modal-modal-title"
+                                variant="h6"
                                 component="h2"
                             >
                                 Update advertisement
