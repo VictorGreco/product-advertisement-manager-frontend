@@ -40,6 +40,12 @@ function AdvertisementsTable(): JSX.Element {
       <div style={{ height: '80vh', width: '100%' }}>
         <DataGrid
           columns={columns}
+          sortModel={[
+            {
+              field: 'discount_percentage',
+              sort: 'asc'
+            }
+          ]}
           rows={data?.advertisements.map(mapDataAdvertisements)}
           components={{
             Toolbar: AdvertisementTableCustomGridToolbar,
