@@ -70,9 +70,9 @@ export const ProductIdInput = (onCustomChange: any) => {
         console.log(selector);
         if (selector) {
             console.log(selector);
-            //onChange(selector);
+            //onCustomChange(selector);
         }
-    }, [selector, onChange])
+    }, [selector, onCustomChange])
 
     useEffect(() => {
         console.log(products);
