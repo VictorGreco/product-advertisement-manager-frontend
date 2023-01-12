@@ -11,6 +11,8 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import MenuItem from '@mui/material/MenuItem';
+
 import dayjs, { Dayjs } from 'dayjs';
 import { useSnackbar } from 'notistack';
 
@@ -20,7 +22,7 @@ import {
 } from '../../commons/common.gql';
 import { style } from '../../commons/common.styles';
 
-import { ProductIdInput } from '../ProductIdInput/ProductIdInput';
+import { IProducts, IData } from '../../commons/interfaces/types';
 
 export function UpdateAdvertisementModal(): JSX.Element {
     const [updateAdvertisement, {
@@ -43,6 +45,7 @@ export function UpdateAdvertisementModal(): JSX.Element {
     const [productId, setProductId] = useState<number>(1234567);
     const [title, setTitle] = useState<string>('');
     const [discountPercentage, setDiscountPercentage] = useState<number>(0);
+    const [products, setProducts] = useState<IProducts[]>();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -56,15 +59,15 @@ export function UpdateAdvertisementModal(): JSX.Element {
         })
     }
 
-    const handleProductIdChange = (value: string): void => {
+    const handleProductIdChange = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         setProductId(parseInt(value));
     }
 
-    const handleTitleChange = ({ target: { value } }: any): void => {
+    const handleTitleChange = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         setTitle(value);
     }
 
-    const handleDiscountPercentageChange = ({ target: { value } }: any): void => {
+    const handleDiscountPercentageChange = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         setDiscountPercentage(parseInt(value));
     }
 
@@ -101,6 +104,34 @@ export function UpdateAdvertisementModal(): JSX.Element {
     }, [mutationData, enqueueSnackbar]);
 
     useEffect(() => {
+        const productsFetch = async () => {
+            const fetchUrl = async (page: number): Promise<IData> => {
+                return await (
+                    await fetch(
+                        `https://4a6onckre7.execute-api.eu-west-1.amazonaws.com/products?page=${page}`
+                    )
+                ).json();
+            }
+
+            const { products, meta }: IData = await fetchUrl(1);
+
+            let totalProducts: IProducts[] = products;
+
+            if (meta?.totalPages > 1 && totalProducts?.length < meta.totalItems) {
+                for (let i = 2; i <= meta.totalPages; i++) {
+                    const { products } = await fetchUrl(i);
+
+                    totalProducts = [...totalProducts, ...products];
+                }
+            }
+
+            setProducts(totalProducts);
+        };
+
+        productsFetch();
+    }, []);
+
+    useEffect(() => {
         const advertisement = queryData?.advertisement;
 
         if (queryData && advertisement) {
@@ -120,7 +151,20 @@ export function UpdateAdvertisementModal(): JSX.Element {
         return (
             <>
                 <Grid item xs={12}>
-                    <ProductIdInput onChange={handleProductIdChange} />
+                    <TextField
+                        fullWidth
+                        select
+                        required
+                        id="outlined-required"
+                        onChange={handleProductIdChange}
+                        label="Product id"
+                    >
+                        {products?.map((option) => (
+                            <MenuItem key={option.name} value={option.id}>
+                                {option.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                 </Grid>
 
                 <Grid item xs={12}>
