@@ -47,7 +47,6 @@ export function DeleteAdvertisementModal() {
         });
 
         handleClose();
-        window.location.reload();
     }
 
     useEffect(() => {

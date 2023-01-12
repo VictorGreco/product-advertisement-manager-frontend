@@ -67,7 +67,6 @@ export function NewAdvertisementModal() {
     });
 
     handleClose();
-    window.location.reload();
   }
 
   useEffect(() => {

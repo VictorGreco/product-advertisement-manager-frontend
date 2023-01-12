@@ -49,9 +49,6 @@ function AdvertisementsTable() {
         <DataGrid
           columns={columns}
           rows={data?.advertisements.map(mapDataAdvertisements)}
-          componentsProps={{
-            toolbar: refetch
-          }}
           components={{
             Toolbar: AdvertisementTableCustomGridToolbar,
           }}
