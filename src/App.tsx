@@ -4,7 +4,7 @@ import { SnackbarProvider } from 'notistack';
 
 import AdvertisementsTable from './components/AdvertisementsTable/AdvertisementsTable';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
       <AdvertisementsTable />
@@ -12,7 +12,7 @@ function App() {
   );
 }
 
-export default function IntegrationNotistack() {
+export default function IntegrationNotistack(): JSX.Element {
   return (
     <SnackbarProvider maxSnack={3}>
       <App />

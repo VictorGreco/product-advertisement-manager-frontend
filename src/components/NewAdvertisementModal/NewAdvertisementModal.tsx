@@ -19,42 +19,43 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { useSnackbar } from 'notistack';
 
 import { NEW_ADVERTISEMENT } from '../../commons/common.gql';
-
 import { style } from '../../commons/common.styles';
 
-export function NewAdvertisementModal() {
-  const [newAdvertisement, { data, loading, error }] = useMutation(NEW_ADVERTISEMENT);
+export function NewAdvertisementModal(): JSX.Element {
+  const [newAdvertisement, {
+    data, loading, error
+  }] = useMutation(NEW_ADVERTISEMENT);
+
   const { enqueueSnackbar } = useSnackbar();
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const [validUntil, setValidUntil] = useState<Dayjs | null>(
     dayjs('2014-08-18T21:11:54'),
   );
-
   const [productId, setProductId] = useState<number>(1234567);
   const [title, setTitle] = useState<string>('');
   const [discountPercentage, setDiscountPercentage] = useState<number>(0);
 
-  const handleProductIdChange = ({ target: { value } }: any) => {
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleProductIdChange = ({ target: { value } }: any): void => {
     setProductId(parseInt(value));
   }
 
-  const handleTitle = ({ target: { value } }: any) => {
+  const handleTitle = ({ target: { value } }: any): void => {
     setTitle(value);
   }
 
-  const handleDiscountPercentage = ({ target: { value } }: any) => {
+  const handleDiscountPercentage = ({ target: { value } }: any): void => {
     setDiscountPercentage(parseInt(value));
   }
 
-  const handleValidUntilChange = (newValidUntilDate: Dayjs | null) => {
+  const handleValidUntilChange = (newValidUntilDate: Dayjs | null): void => {
     setValidUntil(newValidUntilDate);
   };
 
-  const handleNewAdvertisementSubmit = () => {
+  const handleNewAdvertisementSubmit = (): void => {
     newAdvertisement({
       variables: {
         "newAdvertisementData": {
@@ -89,7 +90,11 @@ export function NewAdvertisementModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Add advertisement</Button>
+      <Button
+        onClick={handleOpen}
+      >
+        Add advertisement
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -99,7 +104,11 @@ export function NewAdvertisementModal() {
         <Box sx={style}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
                 New advertisement
               </Typography>
             </Grid>
@@ -147,7 +156,11 @@ export function NewAdvertisementModal() {
             </Grid>
 
             <Grid item xs={12}>
-              <Button onClick={handleNewAdvertisementSubmit}>Create advertisement</Button>
+              <Button
+                onClick={handleNewAdvertisementSubmit}
+              >
+                Create advertisement
+              </Button>
             </Grid>
           </Grid>
         </Box>

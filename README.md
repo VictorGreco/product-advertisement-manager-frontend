@@ -49,6 +49,7 @@ This project is a UI to manage all the product advertisements for the company.
 * [Jest](https://jestjs.io/docs/getting-started)
 * [TypeScript](https://www.typescriptlang.org/docs/)
 * [GraphQL](https://graphql.org/learn/)
+* [Netlify](https://www.netlify.com/)
 
 
 
@@ -80,14 +81,11 @@ Do not forget to create a .env file in the root folders following the .env.sampl
 ### Running the app
 
 ```bash
-# development
+# start application
 $ npm run start
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# build mode
+$ npm run build
 ```
 
 ### Test
@@ -95,22 +93,12 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 You can run this service locally or use the up and running deployed version.
-
-I enabled the build in graphql playground so do not miss the change to play a bit!
-
-And remember the deployed version works under POSTs requests not GETs.
 
 - Run `npm run start` to automatically open in your local browser the app.
 - Access the [deployed demo](https://fantastic-quokka-3581e4.netlify.app/) if you want to try the deployed version.
@@ -129,6 +117,7 @@ For future iterations I would like to add:
 - Better UI
 - Improve and create new tests to reach 100% coverage
 - Include github actions to run test on PR open
+- Fix testing console package errors
 
 See the [open issues](https://github.com/victorgreco/product-advertisement-manager-frontend/issues) for a list of proposed features (and known issues).
 

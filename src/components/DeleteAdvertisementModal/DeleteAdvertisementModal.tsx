@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { useMutation, useLazyQuery } from '@apollo/client';
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -19,18 +17,25 @@ import {
 
 import { style } from '../../commons/common.styles';
 
-export function DeleteAdvertisementModal() {
-    const [deleteAdvertisement, { loading: mutationLoading, error: mutationError, data: mutationData }] = useMutation(DELETE_ADVERTISEMENT);
-    const [getAdvertisementById, { data: queryData }] = useLazyQuery(GET_ADVERTISEMENT_BY_ID);
+export function DeleteAdvertisementModal(): JSX.Element {
+    const [deleteAdvertisement, {
+        loading: mutationLoading, error: mutationError, data: mutationData
+    }] = useMutation(DELETE_ADVERTISEMENT);
+
+    const [getAdvertisementById, {
+        data: queryData
+    }] = useLazyQuery(GET_ADVERTISEMENT_BY_ID);
+
     const { enqueueSnackbar } = useSnackbar();
 
     const [open, setOpen] = useState(false);
+    const [advertisementId, setAdvertisementId] = useState<string>('');
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [advertisementId, setAdvertisementId] = useState<string>('');
 
-    const handleSetAdvertisementId = ({ target: { value } }: any) => {
+    const handleSetAdvertisementId = ({ target: { value } }: any): void => {
         setAdvertisementId(value);
         getAdvertisementById({
             variables: {
@@ -39,7 +44,7 @@ export function DeleteAdvertisementModal() {
         })
     }
 
-    const handleDeleteAdvertisementSubmit = () => {
+    const handleDeleteAdvertisementSubmit = (): void => {
         deleteAdvertisement({
             variables: {
                 "id": advertisementId,
@@ -61,20 +66,27 @@ export function DeleteAdvertisementModal() {
         !!mutationData && enqueueSnackbar('Advertisement deleted successfully', { variant: 'success' });
     }, [mutationData, enqueueSnackbar]);
 
-    const renderHiddenFields = () => {
+    const renderHiddenFields = (): JSX.Element | null => {
 
         if (!queryData) return null;
 
         return (
             <Grid item xs={12}>
-                <Button onClick={handleDeleteAdvertisementSubmit}>Delete advertisement</Button>
+                <Button
+                    onClick={handleDeleteAdvertisementSubmit}
+                >
+                    Delete advertisement
+                </Button>
             </Grid>
         )
     }
 
     return (
         <div>
-            <Button onClick={handleOpen}>Remove advertisement</Button>
+            <Button
+                onClick={handleOpen}>
+                Remove advertisement
+            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -84,7 +96,11 @@ export function DeleteAdvertisementModal() {
                 <Box sx={style}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                            <Typography
+                                id="modal-modal-title"
+                                variant="h6"
+                                component="h2"
+                            >
                                 Delete advertisement
                             </Typography>
                         </Grid>

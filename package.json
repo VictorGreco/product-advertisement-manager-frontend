@@ -1,7 +1,8 @@
 {
   "name": "product-advertisement-manager-frontend",
   "version": "0.1.0",
-  "private": true,
+  "description": "Frontend service for the product advertisement manager app",
+  "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@emotion/react": "^11.10.5",
