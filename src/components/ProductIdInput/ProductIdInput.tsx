@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Select from '@mui/material/Select';
+import Select from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 interface IProducts {
@@ -67,7 +67,7 @@ export const ProductIdInput = (onChange: any) => {
       }, [products]);
 
     return (
-        <TextFile
+        <TextField
             fullWidth
             select
             required
@@ -79,6 +79,6 @@ export const ProductIdInput = (onChange: any) => {
                     {option.name}
                 </MenuItem>
             ))}
-        </Select>
+        </TextField>
     )
 }
