@@ -129,6 +129,7 @@ For future iterations I would like to add:
 - Better UI
 - Improve and create new tests to reach 100% coverage
 - Include github actions to run test on PR open
+- Fix testing console package errors
 
 See the [open issues](https://github.com/victorgreco/product-advertisement-manager-frontend/issues) for a list of proposed features (and known issues).
 
