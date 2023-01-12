@@ -67,8 +67,9 @@ export const ProductIdInput = (onChange: any) => {
       }, [products]);
 
     return (
-        <Select
+        <TextFile
             fullWidth
+            select
             required
             id="outlined-required"
             label="Product id"
