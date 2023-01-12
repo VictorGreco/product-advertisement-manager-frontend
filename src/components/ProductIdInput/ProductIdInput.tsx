@@ -33,6 +33,7 @@ interface IData {
 
 export const ProductIdInput = (onChange: any) => {
     const [products, setProducts] = useState<IProducts[]>();
+    const [selector, setSelector] = useState<string | number>();
 
     useEffect(() => {
         const productsFetch = async () => {
@@ -63,6 +64,14 @@ export const ProductIdInput = (onChange: any) => {
     }, []);
 
     useEffect(() => {
+        console.log(selector);
+        if (selector) {
+            console.log(selector);
+            onChange(selector);
+        }
+    }, [selector])
+
+    useEffect(() => {
         console.log(products);
     }, [products]);
 
@@ -73,10 +82,7 @@ export const ProductIdInput = (onChange: any) => {
             required
             id="outlined-required"
             onChange={(event) => {
-                console.log(event);
-                console.log(event.target);
-                console.log(event.target.value);
-                onChange(event?.target?.value);
+                setSelector(event.target.value)
             }}
             label="Product id"
         >
