@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Select from '@mui/material/TextField';
+import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 interface IProducts {
