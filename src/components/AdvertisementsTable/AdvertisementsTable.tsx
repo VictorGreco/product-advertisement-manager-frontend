@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { DataGrid } from '@mui/x-data-grid';
 
