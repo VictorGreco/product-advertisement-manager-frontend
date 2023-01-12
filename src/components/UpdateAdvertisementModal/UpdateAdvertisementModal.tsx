@@ -1,39 +1,39 @@
 import { useEffect, useState } from 'react';
 
 import { useMutation, useLazyQuery } from '@apollo/client';
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
-import dayjs, { Dayjs } from 'dayjs';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-
+import dayjs, { Dayjs } from 'dayjs';
 import { useSnackbar } from 'notistack';
 
 import {
     UPDATE_ADVERTISEMENT,
     GET_ADVERTISEMENT_BY_ID
 } from '../../commons/common.gql';
-
 import { style } from '../../commons/common.styles';
 
-export function UpdateAdvertisementModal() {
-    const [updateAdvertisement, { loading, error, data: mutationData }] = useMutation(UPDATE_ADVERTISEMENT);
-    const [getAdvertisementById, { data: queryData }] = useLazyQuery(GET_ADVERTISEMENT_BY_ID);
+export function UpdateAdvertisementModal(): JSX.Element {
+    const [updateAdvertisement, {
+        loading,
+        error,
+        data: mutationData
+    }] = useMutation(UPDATE_ADVERTISEMENT);
+
+    const [getAdvertisementById, {
+        data: queryData
+    }] = useLazyQuery(GET_ADVERTISEMENT_BY_ID);
+
     const { enqueueSnackbar } = useSnackbar();
 
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
     const [validUntil, setValidUntil] = useState<Dayjs | null>(
         dayjs('2014-08-18T21:11:54'),
     );
@@ -42,7 +42,10 @@ export function UpdateAdvertisementModal() {
     const [title, setTitle] = useState<string>('');
     const [discountPercentage, setDiscountPercentage] = useState<number>(0);
 
-    const handleSetAdvertisementId = ({ target: { value } }: any) => {
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleSetAdvertisementId = ({ target: { value } }: any): void => {
         setAdvertisementId(value);
         getAdvertisementById({
             variables: {
@@ -51,23 +54,23 @@ export function UpdateAdvertisementModal() {
         })
     }
 
-    const handleProductIdChange = ({ target: { value } }: any) => {
+    const handleProductIdChange = ({ target: { value } }: any): void => {
         setProductId(parseInt(value));
     }
 
-    const handleTitleChange = ({ target: { value } }: any) => {
+    const handleTitleChange = ({ target: { value } }: any): void => {
         setTitle(value);
     }
 
-    const handleDiscountPercentageChange = ({ target: { value } }: any) => {
+    const handleDiscountPercentageChange = ({ target: { value } }: any): void => {
         setDiscountPercentage(parseInt(value));
     }
 
-    const handleValidUntilChange = (newValidUntilDate: Dayjs | null) => {
+    const handleValidUntilChange = (newValidUntilDate: Dayjs | null): void => {
         setValidUntil(newValidUntilDate);
     };
 
-    const handleUpdateAdvertisementSubmit = () => {
+    const handleUpdateAdvertisementSubmit = (): void => {
         updateAdvertisement({
             variables: {
                 "advertisementId": advertisementId,
@@ -108,7 +111,7 @@ export function UpdateAdvertisementModal() {
         }
     }, [queryData])
 
-    const renderHiddenFields = () => {
+    const renderHiddenFields = (): JSX.Element | null => {
 
         if (!queryData) return null;
 
@@ -160,7 +163,10 @@ export function UpdateAdvertisementModal() {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Button onClick={handleUpdateAdvertisementSubmit}>Update advertisement</Button>
+                    <Button
+                        onClick={handleUpdateAdvertisementSubmit}>
+                        Update advertisement
+                    </Button>
                 </Grid>
             </>
         )
@@ -168,7 +174,11 @@ export function UpdateAdvertisementModal() {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Edit advertisement</Button>
+            <Button
+                onClick={handleOpen}
+            >
+                Edit advertisement
+            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -178,7 +188,11 @@ export function UpdateAdvertisementModal() {
                 <Box sx={style}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                            <Typography 
+                                id="modal-modal-title" 
+                                variant="h6" 
+                                component="h2"
+                            >
                                 Update advertisement
                             </Typography>
                         </Grid>

@@ -1,28 +1,19 @@
 import { useQuery } from '@apollo/client';
-
 import { DataGrid } from '@mui/x-data-grid';
 
 import { GET_ALL_ADVERTISEMENTS } from '../../commons/common.gql';
 
 import { AdvertisementTableCustomGridToolbar } from '../AdvertisementTableCustomGridToolbar/AdvertisementTableCustomGridToolbar';
 
-interface AdvertisementsData {
-  _id: string;
-  title: string;
-  product_id: number,
-  valid_until: string;
-  discount_percentage: number;
-}
+import { AdvertisementsData } from './interfaces/AdvertisementsData';
 
-function AdvertisementsTable() {
+function AdvertisementsTable(): JSX.Element {
   const { loading, error, data } = useQuery(GET_ALL_ADVERTISEMENTS, {
     variables: {}
   });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-
-  if (!data) return <></>;
 
   const columns = [
     { field: '_id', headerName: 'Advertisement id', width: 250 },
@@ -45,7 +36,7 @@ function AdvertisementsTable() {
 
   return (
     <section>
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: '100vh', width: '100%' }}>
         <DataGrid
           columns={columns}
           rows={data?.advertisements.map(mapDataAdvertisements)}
