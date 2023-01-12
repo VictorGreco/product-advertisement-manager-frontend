@@ -15,7 +15,7 @@ interface AdvertisementsData {
 }
 
 function AdvertisementsTable() {
-  const { loading, error, data, refetch } = useQuery(GET_ALL_ADVERTISEMENTS, {
+  const { loading, error, data } = useQuery(GET_ALL_ADVERTISEMENTS, {
     variables: {}
   });
 

@@ -1,7 +1,6 @@
-import React from 'react';
 import './App.css';
 
-import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+import { SnackbarProvider } from 'notistack';
 
 import AdvertisementsTable from './components/AdvertisementsTable/AdvertisementsTable';
 
