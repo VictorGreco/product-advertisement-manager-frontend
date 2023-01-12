@@ -7,6 +7,8 @@ import {
 } from '@mui/x-data-grid';
 
 import { NewAdvertisementModal } from '../NewAdvertisementModal/NewAdvertisementModal';
+import { UpdateAdvertisementModal } from '../UpdateAdvertisementModal/UpdateAdvertisementModal';
+import { DeleteAdvertisementModal } from '../DeleteAdvertisementModal/DeleteAdvertisementModal';
 
 export function AdvertisementTableCustomGridToolbar() {
   return (
@@ -17,6 +19,8 @@ export function AdvertisementTableCustomGridToolbar() {
       <GridToolbarExport />
 
       <NewAdvertisementModal />
+      <UpdateAdvertisementModal />
+      <DeleteAdvertisementModal />
     </GridToolbarContainer>
   );
 }

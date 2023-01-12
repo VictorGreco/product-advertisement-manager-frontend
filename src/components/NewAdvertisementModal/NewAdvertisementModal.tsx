@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -14,31 +16,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
+import { NEW_ADVERTISEMENT } from '../../commons/common.gql';
 
-const NEW_ADVERTISEMENT = gql`
-  mutation CreateNewAdvertisement($newAdvertisementData: NewAdvertisementInput!) {
-    addAdvertisement(newAdvertisementData: $newAdvertisementData) {
-      product_id
-      title
-      valid_until
-      discount_percentage
-    }
-  }
-`;
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { style } from '../../commons/common.styles';
 
 export function NewAdvertisementModal() {
   const [newAdvertisement, { data, loading, error }] = useMutation(NEW_ADVERTISEMENT);
@@ -85,7 +67,14 @@ export function NewAdvertisementModal() {
     });
 
     handleClose();
+    window.location.reload();
   }
+
+  useEffect(() => {
+    setProductId(parseInt(''));
+    setTitle('');
+    setDiscountPercentage(parseInt(''));
+  }, [])
 
   useEffect(() => {
     !!error && enqueueSnackbar(`Oops! ${error.message} `, { variant: 'error' });
@@ -109,43 +98,59 @@ export function NewAdvertisementModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            New advertisement
-          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                New advertisement
+              </Typography>
+            </Grid>
 
-          <TextField
-            required
-            id="outlined-required"
-            label="Product id"
-            onChange={handleProductIdChange}
-          />
-
-          <TextField
-            required
-            id="outlined-required"
-            label="Title"
-            onChange={handleTitle}
-          />
-
-          <TextField
-            required
-            id="outlined-required"
-            label="Discount percentage(%)"
-            onChange={handleDiscountPercentage}
-          />
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Stack>
-              <DateTimePicker
-                label="Valid until"
-                value={validUntil}
-                onChange={handleValidUntilChange}
-                renderInput={(params) => <TextField {...params} />}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                required
+                id="outlined-required"
+                label="Product id"
+                onChange={handleProductIdChange}
               />
-            </Stack>
-          </LocalizationProvider>
+            </Grid>
 
-          <Button onClick={handleNewAdvertisementSubmit}>Create advertisement</Button>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                required
+                id="outlined-required"
+                label="Title"
+                onChange={handleTitle}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                required
+                id="outlined-required"
+                label="Discount percentage(%)"
+                onChange={handleDiscountPercentage}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Stack>
+                  <DateTimePicker
+                    label="Valid until"
+                    value={validUntil}
+                    onChange={handleValidUntilChange}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </Stack>
+              </LocalizationProvider>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button onClick={handleNewAdvertisementSubmit}>Create advertisement</Button>
+            </Grid>
+          </Grid>
         </Box>
       </Modal>
     </div>
