@@ -31,9 +31,12 @@ interface IData {
     meta: IMeta;
 }
 
-export const ProductIdInput = (onChange: any) => {
+export const ProductIdInput = (onCustomChange: any) => {
     const [products, setProducts] = useState<IProducts[]>();
     const [selector, setSelector] = useState<string | number>();
+
+    console.log('onCustomChange');
+    console.log(onCustomChange);
 
     useEffect(() => {
         const productsFetch = async () => {

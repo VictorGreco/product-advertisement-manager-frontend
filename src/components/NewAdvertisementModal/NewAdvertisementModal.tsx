@@ -120,7 +120,7 @@ export function NewAdvertisementModal(): JSX.Element {
             </Grid>
 
             <Grid item xs={12}>
-              <ProductIdInput onChange={handleProductIdChange} />
+              <ProductIdInput onCustomChange={handleProductIdChange} />
             </Grid>
 
             <Grid item xs={12}>
