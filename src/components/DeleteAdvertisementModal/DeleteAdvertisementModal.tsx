@@ -35,7 +35,7 @@ export function DeleteAdvertisementModal(): JSX.Element {
     const handleClose = () => setOpen(false);
 
 
-    const handleSetAdvertisementId = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+    const handleSetAdvertisementId = ({ target: { value } }: any): void => {
         setAdvertisementId(value);
         getAdvertisementById({
             variables: {

@@ -39,15 +39,15 @@ export function NewAdvertisementModal(): JSX.Element {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleProductIdChange = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+  const handleProductIdChange = ({ target: { value } }: any): void => {
     setProductId(parseInt(value));
   }
 
-  const handleTitle = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+  const handleTitle = ({ target: { value } }: any): void => {
     setTitle(value);
   }
 
-  const handleDiscountPercentage = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+  const handleDiscountPercentage = ({ target: { value } }: any): void => {
     setDiscountPercentage(parseInt(value));
   }
 
