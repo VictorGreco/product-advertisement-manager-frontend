@@ -90,6 +90,10 @@ export function NewAdvertisementModal(): JSX.Element {
     !!data && enqueueSnackbar('Advertisement created successfully', { variant: 'success' });
   }, [data, enqueueSnackbar]);
 
+  useEffect(() => {
+    console.log(productId);
+  }, [productId])
+
   return (
     <div>
       <Button

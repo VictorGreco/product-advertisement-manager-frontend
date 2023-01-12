@@ -62,6 +62,10 @@ export const ProductIdInput = (onChange: any) => {
         productsFetch();
     }, []);
 
+    useEffect(() => {
+        console.log(products);
+      }, [products]);
+
     return (
         <TextField
             fullWidth
