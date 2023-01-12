@@ -51,15 +51,15 @@ export function DeleteAdvertisementModal() {
 
     useEffect(() => {
         !!mutationError && enqueueSnackbar(`Oops! ${mutationError.message} `, { variant: 'error' });
-    }, [mutationError]);
+    }, [mutationError, enqueueSnackbar]);
 
     useEffect(() => {
         !!mutationLoading && enqueueSnackbar('Deleting advertisement... ~(O.O)~', { variant: 'info' });
-    }, [mutationLoading]);
+    }, [mutationLoading, enqueueSnackbar]);
 
     useEffect(() => {
         !!mutationData && enqueueSnackbar('Advertisement deleted successfully', { variant: 'success' });
-    }, [mutationData]);
+    }, [mutationData, enqueueSnackbar]);
 
     const renderHiddenFields = () => {
 
