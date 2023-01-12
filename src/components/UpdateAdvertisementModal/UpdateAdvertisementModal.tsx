@@ -56,9 +56,9 @@ export function UpdateAdvertisementModal(): JSX.Element {
         })
     }
 
-    const handleProductIdChange = (event: any): void => {
+    const handleProductIdChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setProductId(parseInt(event.target.value));
-    }
+      }
 
     const handleTitleChange = ({ target: { value } }: any): void => {
         setTitle(value);

@@ -72,9 +72,7 @@ export const ProductIdInput = (onChange: any) => {
             select
             required
             id="outlined-required"
-            onChange={(event) => {
-                onChange(event);
-            }}
+            onChange={onChange}
             label="Product id"
         >
             {products?.map((option) => (

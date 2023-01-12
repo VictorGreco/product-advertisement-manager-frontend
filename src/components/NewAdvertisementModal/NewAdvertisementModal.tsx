@@ -41,7 +41,7 @@ export function NewAdvertisementModal(): JSX.Element {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleProductIdChange = (event: any): void => {
+  const handleProductIdChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setProductId(parseInt(event.target.value));
   }
 
