@@ -72,10 +72,13 @@ export const ProductIdInput = (onChange: any) => {
             select
             required
             id="outlined-required"
+            onChange={(event) => {
+                console.log(event);
+            }}
             label="Product id"
         >
             {products?.map((option) => (
-                <MenuItem onClick={onChange} key={option.name} value={option.id}>
+                <MenuItem key={option.name} value={option.id}>
                     {option.name}
                 </MenuItem>
             ))}
