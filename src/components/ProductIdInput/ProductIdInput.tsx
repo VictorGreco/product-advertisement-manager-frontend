@@ -36,7 +36,7 @@ export const ProductIdInput = (onChange: any) => {
 
     useEffect(() => {
         const productsFetch = async () => {
-            const fetchUrl = async (page:number): Promise<IData> => {
+            const fetchUrl = async (page: number): Promise<IData> => {
                 return await (
                     await fetch(
                         `https://4a6onckre7.execute-api.eu-west-1.amazonaws.com/products?page=${page}`
@@ -64,7 +64,7 @@ export const ProductIdInput = (onChange: any) => {
 
     useEffect(() => {
         console.log(products);
-      }, [products]);
+    }, [products]);
 
     return (
         <TextField
@@ -73,7 +73,7 @@ export const ProductIdInput = (onChange: any) => {
             required
             id="outlined-required"
             onChange={(event) => {
-                console.log(event);
+                onChange(event);
             }}
             label="Product id"
         >

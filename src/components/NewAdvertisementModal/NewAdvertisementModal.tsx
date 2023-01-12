@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 
@@ -41,8 +41,8 @@ export function NewAdvertisementModal(): JSX.Element {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleProductIdChange = ({ target: { value } }: any): void => {
-    setProductId(parseInt(value));
+  const handleProductIdChange = (event: any): void => {
+    setProductId(parseInt(event.target.value));
   }
 
   const handleTitle = ({ target: { value } }: any): void => {
