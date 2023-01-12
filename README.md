@@ -1,46 +1,162 @@
-# Getting Started with Create React App
+<br />
+<p align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h3 align="center">Product Advertisement Manager - Frontend</h3>
 
-## Available Scripts
+  <p align="center">
+    Froentend service for the advertisement manager product app
+    <br />
+    <a href="https://github.com/victorgreco/product-advertisement-manager-frontend"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://product-advertisement-manager.herokuapp.com/graphql">View Demo</a>
+    ·
+    <a href="https://github.com/victorgreco/product-advertisement-manager-frontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/victorgreco/product-advertisement-manager-frontend/issues">Request Feature</a>
+  </p>
+</p>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project is a UI to manage all the product advertisements for the company.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Built With
 
-### `npm run eject`
+* [ReactJS]()
+* [Material UI]()
+* [Jest](https://jestjs.io/docs/getting-started)
+* [TypeScript](https://www.typescriptlang.org/docs/)
+* [GraphQL](https://graphql.org/learn/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<!-- GETTING STARTED -->
+## Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To get a local copy up and running follow these simple steps.
 
-## Learn More
+### Prerequisites
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+* node v18.13.0
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Installation
+
+1. Clone the repo
+```sh
+git clone https://github.com/victorgreco/product-advertisement-manager-frontend.git
+```
+2. Install NPM packages
+```sh
+npm install
+```
+
+### Environment Variavles
+Do not forget to create a .env file in the root folders following the .env.sample file if you are running this app locally.
+
+### Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+### Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+You can run this service locally or use the up and running deployed version.
+
+I enabled the build in graphql playground so do not miss the change to play a bit!
+
+And remember the deployed version works under POSTs requests not GETs.
+
+- Run `npm run start` to automatically open in your local browser the app.
+- Access the [deployed demo](https://fantastic-quokka-3581e4.netlify.app/) if you want to try the deployed version.
+
+<!-- ROADMAP -->
+## Roadmap
+
+Currenlty this is an MVP in order to achieve the deadlines.
+
+For future iterations I would like to add:
+- Metrics
+- Robust logger
+- Health checker
+- Need for a token to use the API in order to controll the amount of requests done
+- Create a containarized version of the code in order to be able to escalate in the could provider
+- Better UI
+- Improve and create new tests to reach 100% coverage
+- Include github actions to run test on PR open
+
+See the [open issues](https://github.com/victorgreco/product-advertisement-manager-frontend/issues) for a list of proposed features (and known issues).
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Victor Greco - [linkedin](https://www.linkedin.com/in/victor-greco/) - victorgrecotech@gmail.com
+
+Project Link: [https://github.com/victorgreco/product-advertisement-manager-frontend](https://github.com/victorgreco/product-advertisement-manager-frontend)
