@@ -15,13 +15,14 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import MenuItem from '@mui/material/MenuItem';
 
 import { useSnackbar } from 'notistack';
 
 import { NEW_ADVERTISEMENT } from '../../commons/common.gql';
 import { style } from '../../commons/common.styles';
 
-import { ProductIdInput } from '../ProductIdInput/ProductIdInput';
+import { IProducts, IData } from '../../commons/interfaces/types';
 
 export function NewAdvertisementModal(): JSX.Element {
   const [newAdvertisement, {
@@ -37,19 +38,20 @@ export function NewAdvertisementModal(): JSX.Element {
   const [productId, setProductId] = useState<number>(1234567);
   const [title, setTitle] = useState<string>('');
   const [discountPercentage, setDiscountPercentage] = useState<number>(0);
+  const [products, setProducts] = useState<IProducts[]>();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleProductIdChange = (value: string): void => {
+  const handleProductIdChange = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     setProductId(parseInt(value));
   }
 
-  const handleTitle = ({ target: { value } }: any): void => {
+  const handleTitle = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     setTitle(value);
   }
 
-  const handleDiscountPercentage = ({ target: { value } }: any): void => {
+  const handleDiscountPercentage = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     setDiscountPercentage(parseInt(value));
   }
 
@@ -91,8 +93,32 @@ export function NewAdvertisementModal(): JSX.Element {
   }, [data, enqueueSnackbar]);
 
   useEffect(() => {
-    console.log(productId);
-  }, [productId])
+    const productsFetch = async () => {
+        const fetchUrl = async (page: number): Promise<IData> => {
+            return await (
+                await fetch(
+                    `https://4a6onckre7.execute-api.eu-west-1.amazonaws.com/products?page=${page}`
+                )
+            ).json();
+        }
+
+        const { products, meta }: IData = await fetchUrl(1);
+
+        let totalProducts: IProducts[] = products;
+
+        if (meta?.totalPages > 1 && totalProducts?.length < meta.totalItems) {
+            for (let i = 2; i <= meta.totalPages; i++) {
+                const { products } = await fetchUrl(i);
+
+                totalProducts = [...totalProducts, ...products];
+            }
+        }
+
+        setProducts(totalProducts);
+    };
+
+    productsFetch();
+}, []);
 
   return (
     <div>
@@ -120,7 +146,20 @@ export function NewAdvertisementModal(): JSX.Element {
             </Grid>
 
             <Grid item xs={12}>
-              <ProductIdInput onCustomChange={handleProductIdChange} />
+              <TextField
+                fullWidth
+                select
+                required
+                id="outlined-required"
+                onChange={handleProductIdChange}
+                label="Product id"
+              >
+                {products?.map((option) => (
+                  <MenuItem key={option.name} value={option.id}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
 
             <Grid item xs={12}>
