@@ -85,15 +85,15 @@ export function UpdateAdvertisementModal() {
 
     useEffect(() => {
         !!error && enqueueSnackbar(`Oops! ${error.message} `, { variant: 'error' });
-    }, [error]);
+    }, [error, enqueueSnackbar]);
 
     useEffect(() => {
         !!loading && enqueueSnackbar('Updating advertisement... ~(O.O)~', { variant: 'info' });
-    }, [loading]);
+    }, [loading, enqueueSnackbar]);
 
     useEffect(() => {
         !!mutationData && enqueueSnackbar('Advertisement updated successfully', { variant: 'success' });
-    }, [mutationData]);
+    }, [mutationData, enqueueSnackbar]);
 
     useEffect(() => {
         const advertisement = queryData?.advertisement;

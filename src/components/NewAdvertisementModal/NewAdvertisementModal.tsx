@@ -77,15 +77,15 @@ export function NewAdvertisementModal() {
 
   useEffect(() => {
     !!error && enqueueSnackbar(`Oops! ${error.message} `, { variant: 'error' });
-  }, [error]);
+  }, [error, enqueueSnackbar]);
 
   useEffect(() => {
     !!loading && enqueueSnackbar('Creating advertisement... ~(O.O)~', { variant: 'info' });
-  }, [loading]);
+  }, [loading, enqueueSnackbar]);
 
   useEffect(() => {
     !!data && enqueueSnackbar('Advertisement created successfully', { variant: 'success' });
-  }, [data]);
+  }, [data, enqueueSnackbar]);
 
   return (
     <div>
