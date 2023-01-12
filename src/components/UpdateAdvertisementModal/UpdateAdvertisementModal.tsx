@@ -156,6 +156,7 @@ export function UpdateAdvertisementModal(): JSX.Element {
                         select
                         required
                         id="outlined-required"
+                        defaultValue={productId}
                         onChange={handleProductIdChange}
                         label="Product id"
                     >
