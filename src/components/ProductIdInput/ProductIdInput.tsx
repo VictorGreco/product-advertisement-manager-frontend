@@ -49,7 +49,7 @@ export const ProductIdInput = (onChange: any) => {
             let totalProducts: IProducts[] = products;
 
             if (meta?.totalPages > 1 && totalProducts?.length < meta.totalItems) {
-                for (let i = 2; i < meta.totalPages; i++) {
+                for (let i = 2; i <= meta.totalPages; i++) {
                     const { products } = await fetchUrl(i);
 
                     totalProducts = [...totalProducts, ...products];
