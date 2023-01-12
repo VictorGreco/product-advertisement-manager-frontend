@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
 interface IProducts {
