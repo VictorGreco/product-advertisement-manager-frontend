@@ -41,8 +41,8 @@ export function NewAdvertisementModal(): JSX.Element {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleProductIdChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    setProductId(parseInt(event.target.value));
+  const handleProductIdChange = (value: string): void => {
+    setProductId(parseInt(value));
   }
 
   const handleTitle = ({ target: { value } }: any): void => {
@@ -120,7 +120,7 @@ export function NewAdvertisementModal(): JSX.Element {
             </Grid>
 
             <Grid item xs={12}>
-              <ProductIdInput onChange={handleProductIdChange}/>
+              <ProductIdInput onChange={handleProductIdChange} />
             </Grid>
 
             <Grid item xs={12}>
