@@ -159,4 +159,4 @@ function Nabvar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Navbar;
