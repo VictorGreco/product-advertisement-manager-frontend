@@ -45,7 +45,7 @@ export function UpdateAdvertisementModal(): JSX.Element {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleSetAdvertisementId = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+    const handleSetAdvertisementId = ({ target: { value } }: any): void => {
         setAdvertisementId(value);
         getAdvertisementById({
             variables: {
@@ -54,15 +54,15 @@ export function UpdateAdvertisementModal(): JSX.Element {
         })
     }
 
-    const handleProductIdChange = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+    const handleProductIdChange = ({ target: { value } }: any): void => {
         setProductId(parseInt(value));
     }
 
-    const handleTitleChange = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+    const handleTitleChange = ({ target: { value } }: any): void => {
         setTitle(value);
     }
 
-    const handleDiscountPercentageChange = ({ target: { value } }: React.MouseEvent<HTMLElement>): void => {
+    const handleDiscountPercentageChange = ({ target: { value } }: any): void => {
         setDiscountPercentage(parseInt(value));
     }
 
