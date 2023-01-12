@@ -24,19 +24,20 @@ function AdvertisementsTable(): JSX.Element {
   ]
 
   const mapDataAdvertisements = ({ _id, product_id, title, valid_until, discount_percentage }: AdvertisementsData, index: number) => {
+
     return {
       id: index,
       _id,
       product_id,
       title,
-      valid_until,
+      valid_until: new Date(valid_until).toDateString(),
       discount_percentage
     }
   }
 
   return (
     <section>
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: '80vh', width: '100%' }}>
         <DataGrid
           columns={columns}
           rows={data?.advertisements.map(mapDataAdvertisements)}
