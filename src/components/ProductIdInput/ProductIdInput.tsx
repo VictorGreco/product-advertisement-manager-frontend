@@ -70,7 +70,7 @@ export const ProductIdInput = (onCustomChange: any) => {
         console.log(selector);
         if (selector) {
             console.log(selector);
-            //onCustomChange(selector);
+            onCustomChange(selector);
         }
     }, [selector, onCustomChange])
 
